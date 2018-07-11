@@ -1,0 +1,70 @@
+
+/* canvas{
+  background-color:blue;
+  margin-left:43%;
+} */
+
+div.jumbotron{
+  background-color:blue;
+  color:wheat;
+  /* opacity:0.9; */
+}
+
+h1,h3,h4,h6{
+  text-align:center;
+
+}
+
+#missingField,#notMilitaryTime{
+  color:red;
+}
+
+
+h4{
+  padding:15px 0;
+  color:white;
+}
+.card-heading{
+  background-color:rgb(205, 63, 181);
+  color:black;
+}
+tr th,td{
+  text-align:center;
+}
+
+th{
+  font-weight: bold;
+}
+
+
+.container-fluid {
+  /* Box-model */
+  width: 1200px;
+}
+
+@media screen and (max-width:830px){
+
+   #formDiv{
+    margin-bottom:25px;
+    } 
+
+}
+
+
+  
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+

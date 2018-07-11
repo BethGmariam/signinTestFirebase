@@ -142,7 +142,7 @@
       
                   var city=inputGeneral
       
-                  var queryURL="http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&APPID=" + apiKey
+                  var queryURL="https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&APPID=" + apiKey
       
                   $.ajax({
                   url: queryURL,
@@ -151,7 +151,7 @@
       
                   console.log(response);
       
-                  var attr = 'http://openweathermap.org/img/w/'+response.weather[0].icon+'.png';
+                  var attr = 'https://openweathermap.org/img/w/'+response.weather[0].icon+'.png';
       
                   var temp = response.main.temp;
       

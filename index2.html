@@ -25,60 +25,149 @@
 </head>
 
 
-<body style="background-image:url('')">
-
-    <div class="container-fluid">
-        <!-- <div class="row">
-            <div class="col-lg-4> -->
-                <!-- Jumbotron -->
-                <!-- <div class="jumbotron" style="background-image:url('assets/images/background.jpg')"> -->
-                <!-- <div class="jumbotron" style="background-image:url('assets/images/backgroundx.jpg')">
-                    <h1>Any Time is Train Time </h1>
-                    <h3>Choo Choo. Chee Chee. </h3>
-                    <h6>( Current time: <span id="currentTime"></span></h6>
-                     <canvas id="canvas" width="125" height="125"></canvas> -->
-                <!-- </div>
-            </div>
-        </div>  -->
+<style>
+        .form-group {
+          margin: 25px 25%;
+          width:25%;
+        }
+      
+        img{
+        width:300px;
+          height:250px;
+        }
+      
+        #weatherContainer{
+          width:75px;
+          height:75px;
+          margin-left:40%;
+        }
+      
+        
+</style>
+      
+      
+      
+        <body> 
+      
+                                  <!-- Option 1 using open wheaather API-->
+          <img src="" id="weatherContainer" alt="image"><span id="data"></span><span id="unit">&#8457</span>
+      
+          
+      
+      
+                                
+          
+          <a class="weatherwidget-io" href="https://forecast7.com/en/n33d87151d21/sydney/" data-label_1="SYDNEY" data-label_2="WEATHER" data-theme="original" >SYDNEY WEATHER</a>
+          <script>
+          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+          </script>
+      
+      
+      
+              <div class="form-group">
+                  <input type="text" class="form-control" id="general-input">
+              </div>
+      
+              <div class="form-group">
+                  <button class="btn btn-secondary" id="add-item">Search</button>
+              </div>
+      
+      
+              <div id="imgdisplay">        </div>
     
-        <div class="row">
-                
-                <div class="col-lg-3">  </div>     
-                <div class="col-lg-6" id="formDiv">
-                        <div class="card card-default">
-                                <div class="card-heading">
-                                    <h4 class="card-title" style="text-align:center">Iternariy </h4>
-                                </div>
-                            <div class="card-body" id="addTrain"> 
-                                <form role="form">
-                                    <div class="form-group">
-                                        <label for="destination">Destination</label>
-                                        <input class="form-control" id="trainName" type="text" required placeholder="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="destination">Date</label>
-                                        <input class="form-control" id="date" type="text" required placeholder="">
-                                    </div>
-                                    <p id="missingField" class="form-validation"></p>
-                                    <button class="btn btn-primary" id="submit" type="submit">Submit</button>
-                                </form>
-                            </div>
-                        </div>
-                </div>
-                <div class="col-lg-3">  </div>
-        </div>
+      
+              <script>
+      
+      
+      
+      
+      
+              var inputGeneral = "toronto";
+      
+                  weatherInfo();
+      
+              // var inputGeneral="";
+              var addItem = $("#add-item");
+      
+              addItem.on("click", function(event) {
+      
+              $('#imgdisplay').empty()
+            
+              event.preventDefault();
+      
+              // function searcResult(){  
+               // for testing input 
+      
+                var apiKey="AIzaSyD2x_ZyJ8j79AlvEU-ShEqiCRUKJRZI4rs";
+                var cx = '005057676442827486311:eycndy5i2cg';// custom search engine ID
+      
+                inputGeneral = $("#general-input").val().trim();
+                alert(inputGeneral)
+               var queryURL="https://www.googleapis.com/customsearch/v1?key=" + apiKey + "&cx=" + cx + "&q=" + inputGeneral + "&searchType=image&num=10";
+      
+                $.ajax({
+                url: queryURL,
+                method: "GET"
+                }).then(function(response) {
+      
+                  for(i=0;i<response.items.length;i++)
+      
+                  {
+      
+                  var result= response.items[i].link
+      
+                  var img= $('<img>').attr('src',result)
+      
+      
+      
+                console.log(response);
+      
+                $('#imgdisplay').append(img)
+      
+                  }
+      
+          
+            })
+      
+            weatherInfo();
+      
+      
+              });
+      
+      
+              function weatherInfo(){
+      
+      
+                  var apiKey="a08b8fa46ac3e7c9dc12040793090199";
+      
+                  var city=inputGeneral
+      
+                  var queryURL="http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&APPID=" + apiKey
+      
+                  $.ajax({
+                  url: queryURL,
+                  method: "GET"
+                  }).then(function(response) {
+      
+                  console.log(response);
+      
+                  var attr = 'http://openweathermap.org/img/w/'+response.weather[0].icon+'.png';
+      
+                  var temp = response.main.temp;
+      
+                  //alert(temp)
+      
+                  $('#weatherContainer').attr('src',attr);
+      
+                  $('#data').text(temp);
+      
+                    })
+      
 
-    </div>
-    <!-- <script src="assets/javascript/logic.js"></script> -->
+              }
 
 
-    <!-- <script src="assets/javascript/clock.js"></script> -->
-
-
-
-
-
-
+</script>
     
 </body>
 

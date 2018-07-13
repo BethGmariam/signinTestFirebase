@@ -48,7 +48,11 @@
       
       
         <body> 
-            <button class="btn btn-secondary" id="signOut">signout</button>
+
+            <a href="javascript:UserAccount.UserSignOutOption()" >Sign Out </a>
+
+
+            <!-- <button class="btn btn-secondary" id="signOut">signout</button> -->
 
                                   <!-- Option 1 using open wheaather API-->
           <img src="" id="weatherContainer" alt="image"><span id="data"></span><span id="unit">&#8457</span>
@@ -66,14 +70,30 @@
       };
     
         firebase.initializeApp(config);
+
+
         
+        // document.getElementById('signOut').addEventListener('click', function(event) {
+        //   firebase.auth().signOut();
+        //   // window.location('index.html')
 
-document.getElementById('signOut').addEventListener('click', function(event) {
-  firebase.auth().signOut();
-  // window.location('index.html')
 
+        // });
 
-});
+         var ApplicationUserManaged = (function () {
+       function ApplicationUserManaged() { }
+       ApplicationUserManaged.prototype.UserSignOutOption = function () {
+           firebase.auth().signOut();
+           setTimeout(function () {
+               location.replace("https://bethgmariam.github.io/signinTestFirebase/");
+           }, 3000);
+       }
+       return ApplicationUserManaged;
+   } ());
+
+   //Initialize the new object signout
+    var UserAccount = new ApplicationUserManaged();
+    
 </script>
         
         </script>
